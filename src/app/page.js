@@ -1,45 +1,13 @@
 import TaskList from "./taskList";
-import Login from "./login";
 
 export default function App() {
   let userId = null;
   let loggedIn = false;
 
-  //TODO: Move this back into parent component (Page)
-  // get values from e.target or e.currentTarget and we should be able to get the stufff
-  const handleLogin = async (e) => {
-    "use server";
-    e.preventDefault();
-    alert(e.target.value);
-    // const res = await fetch("http://localhost:4000/users");
-    // if (!res.ok) {
-    //   // TODO set error here instead
-    //   setError("Failed to login");
-    // }
+ 
 
-    // const users = await res.json();
-    // console.log(users);
-
-    // for (const user of users) {
-    //   if (user.email == email && user.password == password) {
-    //     // set loged in
-    //     setuserId(user.id);
-    //     setLoggedIn(true);
-    //     return;
-    //   }
-    // }
-
-    // // if we got here without returning, set error state
-    // // TODO: Create a client component that takes in error and renders with state
-    // setError("Could not log in, please check credentials");
-  };
-
-  if (loggedIn) {
-    // return <TaskList id={userId} loggedIn={loggedIn} />;
-  } else {
-    // TODO Pull this into separate component
-    return <Login handleLogin={handleLogin} />;
-  }
+  return <TaskList id={userId} loggedIn={loggedIn} />;
+  
 }
 
 // export default async function Page() {
