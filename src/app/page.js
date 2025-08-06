@@ -1,55 +1,44 @@
-// "use client";
 import TaskList from "./taskList";
+import Login from "./login";
 
 export default function App() {
-  let loggedIn = false;
   let userId = null;
-  let loginFail = null;
-  let email = null;
-  let password = null;
+  let loggedIn = false;
 
-
+  //TODO: Move this back into parent component (Page)
+  // get values from e.target or e.currentTarget and we should be able to get the stufff
   const handleLogin = async (e) => {
+    "use server";
     e.preventDefault();
-    const res = await fetch("http://localhost:4000/users");
-    if (!res.ok) {
-      // TODO set error here instead
-      throw new Error("Failed to login");
-    }
+    alert(e.target.value);
+    // const res = await fetch("http://localhost:4000/users");
+    // if (!res.ok) {
+    //   // TODO set error here instead
+    //   setError("Failed to login");
+    // }
 
-    const users = await res.json();
+    // const users = await res.json();
+    // console.log(users);
 
-    for (const user of users) {
-      if (user.email == email && user.password == password) {
-        // set loged in
-        loggedIn = true;
-        userId = user.id;
-        return;
-      }
-    }
+    // for (const user of users) {
+    //   if (user.email == email && user.password == password) {
+    //     // set loged in
+    //     setuserId(user.id);
+    //     setLoggedIn(true);
+    //     return;
+    //   }
+    // }
 
-    // if we got here without returning, set error state
-    // TODO: Create a client component that takes in error and renders with state
-    loginFail = "Could not log in, please check credentials";
+    // // if we got here without returning, set error state
+    // // TODO: Create a client component that takes in error and renders with state
+    // setError("Could not log in, please check credentials");
   };
 
   if (loggedIn) {
-    return <TaskList id={userId} />;
+    // return <TaskList id={userId} loggedIn={loggedIn} />;
   } else {
     // TODO Pull this into separate component
-    return (
-      <div>
-        <h1>Login</h1>
-        {loginFail && <p>{loginFail}</p>}
-        <form onSubmit={handleLogin}>
-          <label>Email:</label>
-          <input type="email" value={email} />
-          <label>Password:</label>
-          <input type="password" value={password} />
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    );
+    return <Login handleLogin={handleLogin} />;
   }
 }
 
