@@ -1,43 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import { handleLogin } from "./taskList";
 
-export default function Login() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   handleLogin(email, password);
-  //   // try {
-  //   //   const res = await fetch("http://localhost:4000/users");
-  //   //   if (!res.ok) {
-  //   //     setError("Failed to login");
-  //   //   }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   //   const users = await res.json();
-
-  //   //   for (const user of users) {
-  //   //     if (user.email == email && user.password == password) {
-  //   //       console.log("inside true");
-  //   //       // set loged in
-  //   //       handleLoggedIn(user.id);
-  //   //       e.preventDefault();
-  //   //       return;
-  //   //     }
-  //   //   }
-  //   //   // Handle successful login
-  //   // } catch (err) {
-  //   //   console.log("caught error: " + err);
-  //   //   setError("Something went wrong, please try again");
-  //   // }
-  // };
-
+    const loginRequest = new Request("http://localhost:3000/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    try {
+      const { data } = await fetch(loginRequest);
+      console.log(data.token);
+      // set token in localstorage
+      localStorage.setItem("token", data.token);
+    } catch (err) {
+      setError("Invalid credentials");
+    }
+  };
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      {error && <p>{error}</p>}
+      <form onSubmit={handleSubmit}>
         <label>Email:</label>
         <input
           type="email"

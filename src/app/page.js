@@ -1,6 +1,5 @@
-
-import Form from 'next/form'
-
+import Form from "next/form";
+import LoginPage from "./login";
 
 export default async function TaskList() {
   // can't use state here, because function is async
@@ -11,79 +10,26 @@ export default async function TaskList() {
   let email = null;
   let password = null;
 
-  async function handleLogin(formData) {
-    "use server";
-    console.log("BITCH");
-    console.log(formData);
-    // const email = formData.get("email");
-    // const password = formData.get("password");
-
-    try {
-      const res = await fetch("http://localhost:4000/users");
-      if (!res.ok) {
-        setError("Failed to login");
-      }
-
-      const users = await res.json();
-
-      //   for (const user of users) {
-      //     if (user.email == email && user.password == password) {
-      //       console.log("inside true");
-      //       // set loged in
-      //       handleLoggedIn(user.id);
-      //       e.preventDefault();
-      //       return;
-      //     }
-      //   }
-      //   // Handle successful login
-    } catch (err) {
-      console.log("caught error: " + err);
-      error = "Something went wrong, please try again";
-    }
-
-  // userId = id;
-  // loggedIn = true;
-}
-
-  if (loggedIn) {
-    const data = await fetch("http://localhost:4000/tasks?userId=" + userId);
-    const tasks = await data.json();
-    return (
-      <ul>
-        {tasks.map((task) => (
-          <li key={task[i].id}>
-            {task[i].title} : {task[i].description}{" "}
-          </li>
-        ))}
-      </ul>
-    );
-  } else {
+  // if (loggedIn) {
+  //   const data = await fetch("http://localhost:4000/tasks?userId=" + userId);
+  //   const tasks = await data.json();
+  //   return (
+  //     <ul>
+  //       {tasks.map((task) => (
+  //         <li key={task[i].id}>
+  //           {task[i].title} : {task[i].description}{" "}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // } else {
     // TODO Pull this into separate component
-    
-    return (
-      <div>
+  return(
+    <LoginPage />
 
-        <h1>Login</h1>
-        { error && <p>{error}</p> }
-
-        <Form action={handleLogin}>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-          />
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-          />
-          <button type="submit">Login</button>
-        </Form>
-      </div>
-    );
-  }
+  );
+  
 }
-
 
 // export default async function Page() {
 //   const data = await fetch('https://api.vercel.app/blog')
