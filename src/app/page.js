@@ -1,28 +1,8 @@
 import { LoginForm } from "./ui/login-form";
 
-export default async function TaskList() {
+export default async function Start() {
   // can't use state here, because function is async
-
-  let userId = null;
-  let loggedIn = false;
-  let error = null;
-  let email = null;
-  let password = null;
-
-  // if (loggedIn) {
-  //   const data = await fetch("http://localhost:4000/tasks?userId=" + userId);
-  //   const tasks = await data.json();
-  //   return (
-  //     <ul>
-  //       {tasks.map((task) => (
-  //         <li key={task[i].id}>
-  //           {task[i].title} : {task[i].description}{" "}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // } else {
-  // TODO Pull this into separate component
+  // 
   return <LoginForm />;
 }
 

@@ -21,10 +21,17 @@ export function LoginForm() {
 
         <div>
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
         </div>
 
-        <button type="submit">Login</button>
+        <button disabled={pending} type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

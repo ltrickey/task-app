@@ -1,39 +1,24 @@
 export async function login(state, formData) {
-  console.log(state);
-  console.log(formData);
-
   const email = formData.get("email");
   const password = formData.get("password");
 
   try {
-    const res = await fetch("http://localhost:4000/users");
-    if (!res.ok) {
-      return {
-        errors: ["Failed to login"],
-      };
-    }
+    const loginRes = await fetch("http:localhost:3000/login", {
+      method: POST,
+      body: JSON.stringify({ email: email, password: password }),
+    });
 
-    const users = await res.json();
-    let foundUser;
+    console.log("received resonse: " + loginRes);
+    //redirect("/list");
 
-    for (const user of users) {
-      if (user.email == email && user.password == password) {
-        // set loged in
-        foundUser = user;
-      }
-    }
     // Todo: break out into user not found vs bad password
-    if (!foundUser) {
-      return {
-        errors: ["Invalid credentials"],
-      };
-    } else {
-      // Create a JWT token
-      // const token = jwt.sign({ email: foundUser.email }, "your_secret_key", {
-      //   expiresIn: "1h",
-      // });
-      console.log("Successful Login!");
-    }
+
+    // Create a JWT token
+    // const token = jwt.sign({ email: foundUser.email }, "your_secret_key", {
+    //   expiresIn: "1h",
+    // });
+    // creates a cookie to hold token from
+    // Authentication.  For now just use user id
   } catch (err) {
     console.log("caught error: " + err);
     return {
