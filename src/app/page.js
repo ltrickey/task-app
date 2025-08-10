@@ -1,5 +1,4 @@
-import Form from "next/form";
-import LoginPage from "./login";
+import { LoginForm } from "./ui/login-form";
 
 export default async function TaskList() {
   // can't use state here, because function is async
@@ -23,12 +22,8 @@ export default async function TaskList() {
   //     </ul>
   //   );
   // } else {
-    // TODO Pull this into separate component
-  return(
-    <LoginPage />
-
-  );
-  
+  // TODO Pull this into separate component
+  return <LoginForm />;
 }
 
 // export default async function Page() {
