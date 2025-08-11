@@ -8,9 +8,9 @@ export function AddTaskForm() {
 
   return (
     <div>
-      <div className="ml-6 pt-1">
+      <div className="pt-1">
         <h3 className="text-xl text-gray-900 leading-tight pb-5">
-          Add a Task:
+          Add a Task
         </h3>
         {/* TODO: separate email and password errors: 
         ie user not found vs password incorrect */}
@@ -44,7 +44,11 @@ export function AddTaskForm() {
             />
           </div>
 
-          <button disabled={pending} type="submit">
+          <button
+            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            disabled={pending}
+            type="submit"
+          >
             Add Task
           </button>
         </form>

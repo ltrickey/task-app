@@ -18,7 +18,7 @@ export async function addTask(state, formData) {
     }
     //redirect("/");
   } catch (err) {
-    console.log("caught error: " + err);
+    console.log("caught error: " + err); // TODO Render on UI
   } finally {
     redirect("/list");
   }
@@ -29,7 +29,7 @@ export async function markComplete(task, state, formData) {
   try {
     // TODO: change this to PUT
     const completeResult = await fetch("/complete", {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify(task),
     });
 
@@ -39,7 +39,28 @@ export async function markComplete(task, state, formData) {
       };
     }
   } catch (err) {
-    console.log("caught error: " + err);
+    console.log("caught error: " + err); // TODO Render on UI
+  } finally {
+    redirect("/list");
+  }
+}
+
+export async function deleteTask(task, state, formData) {
+  // todo, only send relevant parts of task
+  try {
+    // TODO: change this to PUT
+    const deleteResult = await fetch("/delete-task", {
+      method: "DELETE",
+      body: JSON.stringify(task),
+    });
+
+    if (!deleteResult.ok) {
+      return {
+        errors: ["Unable to delete task"],
+      };
+    }
+  } catch (err) {
+    console.log("caught error: " + err); // TODO Render on UI
   } finally {
     redirect("/list");
   }
@@ -48,16 +69,14 @@ export async function markComplete(task, state, formData) {
 export async function editTask(task, state, formData) {
   const title = formData.get("title");
   const description = formData.get("description");
- 
+
   if (task.task.title == title && task.task.description == description) {
-    return {
-      errors: ["No change found"],
-    };
+    redirect("/list");
   } else {
     console.log("about to send");
     try {
       const editResult = await fetch("/edit-task", {
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify({
           original: task.task,
           title: title,

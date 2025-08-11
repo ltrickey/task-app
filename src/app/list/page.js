@@ -7,6 +7,7 @@ import { AddTaskForm } from "../ui/add-task-form";
 import Logout from "../ui/logout-button";
 import CompleteTask from "../ui/complete-form.js";
 import EditTask from "../ui/edit-task-form";
+import DeleteTask from "../ui/delete-task-form";
 
 export default async function TaskList() {
   const tasks = await getTasks();
@@ -19,12 +20,15 @@ export default async function TaskList() {
       <ul>
         {/* map each of these to it's own component, and use generateStaticParams */}
         {tasks.map((task) => (
-          <li key={task.id}>
+          <li className="" key={task.id}>
             <p className={task.done ? "line-through" : ""}>
               {task.title} : {task.description}
             </p>
-            <EditTask task={task} />
-            <CompleteTask task={task} />
+            <div className="grid grid-cols-3 content-start pb-5 pt-1">
+              <EditTask task={task} />
+              <CompleteTask task={task} />
+              <DeleteTask task={task} />
+            </div>
           </li>
         ))}
       </ul>

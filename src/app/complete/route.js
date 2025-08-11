@@ -1,4 +1,4 @@
-export async function POST(request) {
+export async function PATCH(request) {
   const { task } = await request.json();
 
   const updateComplete = await fetch(

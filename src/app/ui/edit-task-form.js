@@ -25,7 +25,7 @@ export default function EditTask(task) {
           setIsVisible(!isVisible);
         }}
       >
-        Edit Task
+        Edit
       </button>
       {isVisible && (
         <form action={action}>
@@ -61,7 +61,7 @@ export default function EditTask(task) {
             />
           </div>
           <button
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border py-2 px-4  border-blue-500 hover:border-transparent rounded"
             disabled={pending}
             type="submit"
           >
