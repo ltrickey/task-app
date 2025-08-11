@@ -7,8 +7,8 @@ export function LoginForm() {
   const [state, action, pending] = useActionState(login, undefined);
 
   return (
-    <div class="container max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
-      <div class="ml-6 pt-1">
+    <div className="container max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
+      <div className="ml-6 pt-1">
         <h3 className="text-xl text-gray-900 leading-tight pb-5">
           Login to view Tasks
         </h3>
@@ -31,7 +31,7 @@ export function LoginForm() {
           </div>
 
           <div>
-            <label class="mr-1" htmlFor="password">
+            <label className="mr-1" htmlFor="password">
               Password:
             </label>
             <input

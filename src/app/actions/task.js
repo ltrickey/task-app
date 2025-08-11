@@ -23,3 +23,23 @@ export async function addTask(state, formData) {
     redirect("/list");
   }
 }
+
+export async function markComplete(task, state, formData) {
+  // todo, only send relevant parts of task
+  try {
+    const completeResult = await fetch("/complete", {
+      method: "POST",
+      body: JSON.stringify(task),
+    });
+
+    if (!completeResult.ok) {
+      return {
+        errors: ["Unable to Mark as " + complete],
+      };
+    }
+  } catch (err) {
+    console.log("caught error: " + err);
+  } finally {
+    redirect("/list");
+  }
+}

@@ -8,7 +8,7 @@ export function AddTaskForm() {
 
   return (
     <div>
-      <div class="ml-6 pt-1">
+      <div className="ml-6 pt-1">
         <h3 className="text-xl text-gray-900 leading-tight pb-5">
           Add a Task:
         </h3>
@@ -31,7 +31,7 @@ export function AddTaskForm() {
           </div>
 
           <div>
-            <label class="mr-1" htmlFor="description">
+            <label className="mr-1" htmlFor="description">
               Description:
             </label>
             <input

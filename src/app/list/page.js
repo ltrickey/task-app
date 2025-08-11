@@ -5,25 +5,29 @@
 import { getTasks } from "../lib/dal";
 import { AddTaskForm } from "../ui/add-task-form";
 import Logout from "../ui/logout-button";
+import Complete from "../ui/complete-button";
 
 export default async function TaskList() {
   const tasks = await getTasks();
+
   return (
-    <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+    <div className="container mx-auto p-6 bg-white rounded-lg shadow-xl">
       <h3 className="text-xl text-gray-900 leading-tight pb-5">
         Current Tasks
       </h3>
       <ul>
+        {/* map each of these to it's own component, and use generateStaticParams */}
         {tasks.map((task) => (
           <li key={task.id}>
-            {task.title} : {task.description}{" "}
+            {task.title} : {task.description} : {task.id}{" "}
+            <Complete task={task} />
           </li>
         ))}
       </ul>
-      <div class="mx-auto pt-6">
+      <div className="mx-auto pt-6">
         <AddTaskForm />
       </div>
-      <div class="mx-auto pt-6">
+      <div className="mx-auto pt-6">
         <Logout />
       </div>
     </div>

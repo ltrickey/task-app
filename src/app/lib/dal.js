@@ -31,6 +31,24 @@ export const getUser = cache(async () => {
   return session.userId;
 });
 
+export const getTask = cache(async (id) => {
+  const session = await verifySession();
+  if (!session) return null;
+  try {
+    const res = await fetch(
+      "http://localhost:4000/tasks/" + id
+    );
+     if (!res.ok) {
+      // TODO RETURN
+      throw new Error("Failed to fetch tasks for user");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error); // TODO handle better
+  }
+});
+
 export const getTasks = cache(async () => {
   const session = await verifySession();
   if (!session) return null;
@@ -44,22 +62,8 @@ export const getTasks = cache(async () => {
       throw new Error("Failed to fetch tasks for user");
     }
 
-    const jsonPromises = await res.json();
-
-    if (!jsonPromises) {
-      // TODO: hanlde/return errors
-      throw new Error("Failed to fetch tasks for user");
-    }
-
-    return await Promise.all(jsonPromises)
-      .then((results) => {
-        return results;
-      })
-      .catch((error) => {
-        // TODO: hanlde/return errors
-        console.error("Get tasks failed:", error);
-      });
+    return await res.json();
   } catch (error) {
-    console.error(error); // from creation or business logic
+    console.error(error); // TODO handle better
   }
 });
