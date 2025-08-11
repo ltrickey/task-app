@@ -4,7 +4,7 @@ import { login } from "../actions/auth";
 import { useActionState } from "react";
 
 export function LoginForm() {
-  const [state, action, pending] = useActionState(login, undefined);
+  const [state, action, pending] = useActionState(login, {});
 
   return (
     <div className="container max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">

@@ -5,7 +5,8 @@
 import { getTasks } from "../lib/dal";
 import { AddTaskForm } from "../ui/add-task-form";
 import Logout from "../ui/logout-button";
-import Complete from "../ui/complete-button";
+import CompleteTask from "../ui/complete-form.js";
+import EditTask from "../ui/edit-task-form";
 
 export default async function TaskList() {
   const tasks = await getTasks();
@@ -19,8 +20,11 @@ export default async function TaskList() {
         {/* map each of these to it's own component, and use generateStaticParams */}
         {tasks.map((task) => (
           <li key={task.id}>
-            {task.title} : {task.description} : {task.id}{" "}
-            <Complete task={task} />
+            <p className={task.done ? "line-through" : ""}>
+              {task.title} : {task.description}
+            </p>
+            <EditTask task={task} />
+            <CompleteTask task={task} />
           </li>
         ))}
       </ul>

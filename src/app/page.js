@@ -3,7 +3,6 @@
 */
 import { redirect } from "next/navigation";
 import { getUser } from "./lib/dal";
-import TaskList from "./list/page";
 import { LoginForm } from "./ui/login-form";
 
 export default async function Start() {

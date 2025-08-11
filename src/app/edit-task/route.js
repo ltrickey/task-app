@@ -1,12 +1,14 @@
 export async function POST(request) {
-  const { task } = await request.json();
+  const { original, title, description } = await request.json();
 
   const updateComplete = await fetch(
-    `http://localhost:4000/tasks/${task.id}/`,
+    `http://localhost:4000/tasks/${original.id}/`,
     {
-      method: "PATCH",
+      method: "PUT",
       body: JSON.stringify({
-        done: !task.done, // right now setting done as false automatically.  TODO could add done tasks
+        title: title,
+        description: description,
+        done: original.done,
       }),
     }
   );

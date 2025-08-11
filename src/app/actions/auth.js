@@ -7,29 +7,24 @@ import { redirect } from "next/navigation";
 export async function login(state, formData) {
   const email = formData.get("email");
   const password = formData.get("password");
-  let redirectPath;
+  let loginRes;
   try {
-    const loginRes = await fetch("/login", {
+    loginRes = await fetch("/login", {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
     });
 
     if (!loginRes.ok) {
-      return {
-        errors: ["Unable to login"],
-      };
+      // Todo: break out into user not found vs bad password
+      return { errors: ["Unable to login: invalid credentials"] };
     }
-
-    redirectPath = "/list";
-    // Todo: break out into user not found vs bad password
   } catch (err) {
     console.log("caught error: " + err);
-    redirectPath = "/";
-    return {
-      errors: ["Something went wrong, please try again"],
-    };
+    return { errors: ["Something went wrong, please try again"] };
   } finally {
-    redirect(redirectPath);
+    if (loginRes && loginRes.ok) {
+      redirect("/list");
+    }
   }
 }
 
