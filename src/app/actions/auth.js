@@ -1,30 +1,54 @@
+/* 
+  Middle layer separating login API call from front end.
+  This way we can connect server component with client component
+*/
+import { redirect } from "next/navigation";
+
 export async function login(state, formData) {
   const email = formData.get("email");
   const password = formData.get("password");
-
+  let redirectPath;
   try {
-    const loginRes = await fetch("http:localhost:3000/login", {
-      method: POST,
+    const loginRes = await fetch("/login", {
+      method: "POST",
       body: JSON.stringify({ email: email, password: password }),
     });
 
-    console.log("received resonse: " + loginRes);
-    //redirect("/list");
+    if (!loginRes.ok) {
+      return {
+        errors: ["Unable to login"],
+      };
+    }
 
+    redirectPath = "/list";
     // Todo: break out into user not found vs bad password
-
-    // Create a JWT token
-    // const token = jwt.sign({ email: foundUser.email }, "your_secret_key", {
-    //   expiresIn: "1h",
-    // });
-    // creates a cookie to hold token from
-    // Authentication.  For now just use user id
   } catch (err) {
     console.log("caught error: " + err);
+    redirectPath = "/";
     return {
       errors: ["Something went wrong, please try again"],
     };
+  } finally {
+    redirect(redirectPath);
   }
 }
 
-// call JSON-SERVER.  TODO: Replace with call to Auth0
+export async function logout() {
+  try {
+    const logoutRes = await fetch("/logout", {
+      method: "POST",
+    });
+
+    //TODO: handle error better
+    if (!logoutRes.ok) {
+      return {
+        errors: ["Unable to logout"],
+      };
+    }
+    //redirect("/");
+  } catch (err) {
+    console.log("caught error: " + err);
+  } finally {
+    redirect("/");
+  }
+}

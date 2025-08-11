@@ -1,14 +1,17 @@
-/*
-  API route to login a user.  Called from the front end
-  by hitting endpoint : /login
-  this would be where we make the call to Auth0
-*/
-import { createSession } from "../lib/session";
+
+import { getUser } from "../lib/dal";
 
 export async function POST(request) {
-  const { email, password } = await request.json();
 
-  const res = await fetch("http://localhost:4000/users");
+  const { title, description } = await request.json();
+  const userId = getUser(); // TODO handle not logged in
+
+  const res = await fetch("http://localhost:4000/tasks/", );
+
+  const addTaskResult = await fetch("http://localhost:4000/tasks/", {
+      method: "POST",
+      body: JSON.stringify({ title: title, description: description }),
+    });
 
   if (!res.ok) {
     const responseOptions = { status: 401, statusText: "Failed to login" };
