@@ -1,16 +1,16 @@
 "use client";
 
-import { login } from "../actions/auth";
+import { addTask } from "../actions/task";
 import { useActionState } from "react";
 
-export function LoginForm() {
-  const [state, action, pending] = useActionState(login, undefined);
+export function AddTaskForm() {
+  const [state, action, pending] = useActionState(addTask, undefined);
 
   return (
-    <div class="container max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
+    <div>
       <div class="ml-6 pt-1">
         <h3 className="text-xl text-gray-900 leading-tight pb-5">
-          Login to view Tasks
+          Add a Task:
         </h3>
         {/* TODO: separate email and password errors: 
         ie user not found vs password incorrect */}
@@ -18,35 +18,34 @@ export function LoginForm() {
 
         <form action={action}>
           <div>
-            <label className="mr-1" htmlFor="email">
-              Email:
+            <label className="mr-1" htmlFor="title">
+              Title:
             </label>
             <input
-              class="px-4 py-2 leading-tight"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
+              className="px-4 py-2 leading-tight"
+              id="title"
+              name="title"
+              type="text"
+              placeholder="title"
             />
           </div>
 
           <div>
-            <label class="mr-1" htmlFor="password">
-              Password:
+            <label class="mr-1" htmlFor="description">
+              Description:
             </label>
             <input
-              class="px-4 py-2 leading-tight"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              autoComplete="current-password"
+              className="px-4 py-2 leading-tight"
+              id="description"
+              name="description"
+              type="text"
+              placeholder="description"
               required
             />
           </div>
 
           <button disabled={pending} type="submit">
-            Login
+            Add Task
           </button>
         </form>
       </div>

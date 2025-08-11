@@ -22,7 +22,7 @@ export function LoginForm() {
               Email:
             </label>
             <input
-              class="px-4 py-2 leading-tight"
+              className="px-4 py-2 leading-tight"
               id="email"
               name="email"
               type="email"
@@ -35,7 +35,7 @@ export function LoginForm() {
               Password:
             </label>
             <input
-              class="px-4 py-2 leading-tight"
+              className="px-4 py-2 leading-tight"
               id="password"
               name="password"
               type="password"

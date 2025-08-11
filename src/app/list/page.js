@@ -2,7 +2,8 @@
   page rendered from route /list
 */
 
-import { getTasks, getUser } from "../lib/dal";
+import { getTasks } from "../lib/dal";
+import { AddTaskForm } from "../ui/add-task-form";
 import Logout from "../ui/logout-button";
 
 export default async function TaskList() {
@@ -19,6 +20,9 @@ export default async function TaskList() {
           </li>
         ))}
       </ul>
+      <div class="mx-auto pt-6">
+        <AddTaskForm />
+      </div>
       <div class="mx-auto pt-6">
         <Logout />
       </div>

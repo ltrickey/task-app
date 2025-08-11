@@ -8,7 +8,6 @@
 
 import "server-only";
 
-import { redirect } from "next/navigation";
 import { cache } from "react";
 import { cookies } from "next/headers";
 import { decrypt } from "@/app/lib/session";
@@ -31,12 +30,6 @@ export const getUser = cache(async () => {
   if (!session) return null;
   return session.userId;
 });
-
-export const isLoggedIn = async () => {
-  const session = await verifySession();
-  if (!session) return null;
-  return session.userId;
-};
 
 export const getTasks = cache(async () => {
   const session = await verifySession();
