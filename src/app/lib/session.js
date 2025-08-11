@@ -1,9 +1,14 @@
+/*
+  Handles logic to encrypt, decrypt and create session info
+*/
+
 import "server-only";
 import { cookies } from "next/headers";
-
 import { SignJWT, jwtVerify } from "jose";
 
-const secretKey = process.env.SESSION_SECRET;
+// TODO: DO NOT DEPLOY, used for development purposes only
+const secretKey = "rdXJaQjfD48C66M";
+//const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
 
 export async function encrypt(payload) {
@@ -29,6 +34,11 @@ export async function decrypt(session) {
   }
 }
 
+/* 
+  Right now only using userId for session Cookie.  
+  In future, would use token the Auth0 NextJS SDK which 
+  Similarly stores their token in an httpOnly cookie
+*/
 export async function createSession(userId) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
   const session = await encrypt({ userId, expiresAt });
@@ -46,5 +56,4 @@ export async function createSession(userId) {
 export async function deleteSession() {
   const cookieStore = await cookies();
   cookieStore.delete("session");
-   
 }

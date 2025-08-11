@@ -12,13 +12,11 @@ import { cache } from "react";
 import { cookies } from "next/headers";
 import { decrypt } from "@/app/lib/session";
 
-//TODO do I have to remove cache here too?
 export const verifySession = cache(async () => {
   const cookie = (await cookies()).get("session")?.value;
   const session = await decrypt(cookie);
 
   if (!session || !session.userId) {
-    // TODO: this doesn't work, haven't set up route
     return null;
   }
 
@@ -39,13 +37,12 @@ export const getTask = cache(async (id) => {
       "http://localhost:4000/tasks/" + id
     );
      if (!res.ok) {
-      // TODO RETURN
       throw new Error("Failed to fetch tasks for user");
     }
 
     return await res.json();
   } catch (error) {
-    console.error(error); // TODO handle better
+    console.error(error); // TODO logging
   }
 });
 
@@ -58,12 +55,12 @@ export const getTasks = cache(async () => {
       "http://localhost:4000/tasks?userId=" + session.userId
     );
     if (!res.ok) {
-      // TODO RETURN
       throw new Error("Failed to fetch tasks for user");
     }
 
     return await res.json();
   } catch (error) {
-    console.error(error); // TODO handle better
+    console.error(error);  // TODO logging
   }
+  
 });

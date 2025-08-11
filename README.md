@@ -1,10 +1,11 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## About
 
-A Nextjs app to track tasks.  Using Json-Server and mocking login
+A basic [Nextjs](https://nextjs.org/) app to track a task list, supporting multiple users. 
+Using [Json-Server](https://github.com/typicode/json-server/tree/v0) for mock api and login flow.
 
 ## Getting Started
 
-First, run the development server:
+The webapp can be run in your terminal by navigating to the root directory and running: 
 
 ```bash
 npm run dev
@@ -16,23 +17,46 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+JSON-Server is used to mock out the backend.  This can be run by navigating to the same root directory 
+in a new terminal window and run: 
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run json-server
+# or 
+yarn json-server
+# or
+pnpm json-server
+# or
+bun json-server
+```
+Onceboth the webapp and server are running, open [http://localhost:3000](http://localhost:3000) with your browser to see the app running.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+There are two registered users that can login with email and password combinations:
 
-## Learn More
+```
+  { 
+    "email": "test@test.com",
+    "password": "test123!",
+  },
+  {
+    "email": "jane@example.com",
+    "password": "OMG123!",
+  }
+```
 
-To learn more about Next.js, take a look at the following resources:
+Each should show their unique list of tasks.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Supported Functions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Currently there is no signup function, but the two registered users can login to see their tasks and then logout.  
 
-## Deploy on Vercel
+While logged in, verified users can mark their tasks as Done or Undo that action, they can update the title and description of each task, they can add new tasks and they can delete tasks.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Secret Key
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A secret key is needed in order to encrypt and decrypt session information, which is handled [in the session.js file](./src/app/lib/session.js)
+In order to provide this secret key, you can create a .env file in the root app & generate a 32-character random string that can be used as a secret key
+per the [Next.js docs](https://nextjs.org/docs/app/guides/authentication#1-generating-a-secret-key); 
+You can then use `const secretKey = process.env.SESSION_SECRET`;
+
+However for ease in getting the app running, a random smaller string is hard coded into the session file.  This should never be used in a production environment.

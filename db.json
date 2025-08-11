@@ -4,15 +4,13 @@
       "id": "1",
       "name": "John Doe",
       "email": "test@test.com",
-      "password": "test123!",
-      "authToken": "1234446"
+      "password": "test123!"
     },
     {
       "id": "2",
       "name": "Jane Smith",
       "email": "jane@example.com",
-      "password": "OMG123!",
-      "authToken": "8889080"
+      "password": "OMG123!"
     }
   ],
   "tasks": [
@@ -42,13 +40,6 @@
       "id": "4",
       "title": "Dinner",
       "description": "Spaghetti and Meatballs",
-      "done": false
-    },
-    {
-      "id": "64a0",
-      "userId": "1",
-      "title": "test",
-      "description": "asdasdsd",
       "done": true
     }
   ]

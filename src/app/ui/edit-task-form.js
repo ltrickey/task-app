@@ -19,7 +19,7 @@ export default function EditTask(task) {
     <div>
       {state?.errors && <p>{state.errors}</p>}
       <button
-        className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        className="action-button"
         disabled={pending}
         onClick={() => {
           setIsVisible(!isVisible);
@@ -61,7 +61,7 @@ export default function EditTask(task) {
             />
           </div>
           <button
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border py-2 px-4  border-blue-500 hover:border-transparent rounded"
+            className="action-button"
             disabled={pending}
             type="submit"
           >

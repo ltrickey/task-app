@@ -24,7 +24,7 @@ export async function POST(request) {
     }
   }
 
-  if (!foundUser) {    
+  if (!foundUser) {
     const responseOptions = { status: 401, statusText: "Invalid credentials" };
     return new Response(null, responseOptions);
   }

@@ -14,7 +14,7 @@ export default function DeleteTask(task) {
       <form action={action}>
         {/* sending opposite value here to flip complete/not complete */}
         <button
-          className="py-2 px-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent rounded"
+          className="action-button"
           disabled={pending}
           type="submit"
         >

@@ -9,9 +9,7 @@ export function AddTaskForm() {
   return (
     <div>
       <div className="pt-1">
-        <h3 className="text-xl text-gray-900 leading-tight pb-5">
-          Add a Task
-        </h3>
+        <h3 className="text-xl text-gray-900 leading-tight pb-5">Add a Task</h3>
         {/* TODO: separate email and password errors: 
         ie user not found vs password incorrect */}
         {state?.errors && <p>{state.errors}</p>}
@@ -27,6 +25,7 @@ export function AddTaskForm() {
               name="title"
               type="text"
               placeholder="title"
+              required
             />
           </div>
 
@@ -45,7 +44,7 @@ export function AddTaskForm() {
           </div>
 
           <button
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="action-button"
             disabled={pending}
             type="submit"
           >

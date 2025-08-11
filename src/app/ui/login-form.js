@@ -45,7 +45,10 @@ export function LoginForm() {
             />
           </div>
 
-          <button disabled={pending} type="submit">
+          <button 
+            className="action-button"
+            disabled={pending} type="submit"
+          >
             Login
           </button>
         </form>
