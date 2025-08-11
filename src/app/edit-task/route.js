@@ -22,6 +22,5 @@ export async function PATCH(request) {
     return new Response(null, responseOptions);
   }
 
-  // TODO: different response?
   return new Response();
 }

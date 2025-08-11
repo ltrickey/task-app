@@ -10,24 +10,20 @@ export async function addTask(state, formData) {
       body: JSON.stringify({ title: title, description: description }),
     });
 
-    //TODO: handle error better
     if (!addTaskResult.ok) {
       return {
         errors: ["Unable to Add Task"],
       };
     }
-    //redirect("/");
   } catch (err) {
-    console.log("caught error: " + err); // TODO Render on UI
+    console.log("caught error: " + err); // TODO Render on UI?
   } finally {
     redirect("/list");
   }
 }
 
 export async function markComplete(task, state, formData) {
-  // todo, only send relevant parts of task
   try {
-    // TODO: change this to PUT
     const completeResult = await fetch("/complete", {
       method: "PATCH",
       body: JSON.stringify(task),
@@ -39,16 +35,14 @@ export async function markComplete(task, state, formData) {
       };
     }
   } catch (err) {
-    console.log("caught error: " + err); // TODO Render on UI
+    console.log("caught error: " + err); // TODO Render on UI?
   } finally {
     redirect("/list");
   }
 }
 
 export async function deleteTask(task, state, formData) {
-  // todo, only send relevant parts of task
   try {
-    // TODO: change this to PUT
     const deleteResult = await fetch("/delete-task", {
       method: "DELETE",
       body: JSON.stringify(task),

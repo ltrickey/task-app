@@ -2,7 +2,6 @@
 import { useState, useActionState } from "react";
 import { editTask } from "../actions/task";
 
-// TODO SEND TRUE OR FALSE
 export default function EditTask(task) {
   const taskClone = Object.assign({}, task);
 
@@ -14,7 +13,6 @@ export default function EditTask(task) {
   const editTaskBound = editTask.bind(null, task);
   const [state, action, pending] = useActionState(editTaskBound, undefined);
 
-  // TODO: change form to just button and use .bind?
   return (
     <div>
       {state?.errors && <p>{state.errors}</p>}

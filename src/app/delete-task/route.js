@@ -16,6 +16,5 @@ export async function DELETE(request) {
     return new Response(null, responseOptions);
   }
 
-  // TODO: different response?
   return new Response();
 }

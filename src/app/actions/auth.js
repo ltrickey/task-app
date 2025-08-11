@@ -40,7 +40,7 @@ export async function logout() {
         errors: ["Unable to logout"],
       };
     }
-    //redirect("/");
+   
   } catch (err) {
     console.log("caught error: " + err);
   } finally {

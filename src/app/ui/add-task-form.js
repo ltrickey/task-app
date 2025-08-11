@@ -10,10 +10,7 @@ export function AddTaskForm() {
     <div>
       <div className="pt-1">
         <h3 className="text-xl text-gray-900 leading-tight pb-5">Add a Task</h3>
-        {/* TODO: separate email and password errors: 
-        ie user not found vs password incorrect */}
         {state?.errors && <p>{state.errors}</p>}
-
         <form action={action}>
           <div>
             <label className="mr-1" htmlFor="title">
@@ -43,11 +40,7 @@ export function AddTaskForm() {
             />
           </div>
 
-          <button
-            className="action-button"
-            disabled={pending}
-            type="submit"
-          >
+          <button className="action-button" disabled={pending} type="submit">
             Add Task
           </button>
         </form>

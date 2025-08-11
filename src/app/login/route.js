@@ -31,6 +31,6 @@ export async function POST(request) {
   console.log("Successful Login!");
 
   await createSession(foundUser.id);
-  // TODO: different response?
+  
   return Response.json({ message: "success" });
 }

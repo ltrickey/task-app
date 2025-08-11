@@ -3,12 +3,12 @@ import { redirect } from "next/navigation";
 
 export async function POST(request) {
   const { title, description } = await request.json();
-  const userId = getUser(); // TODO handle not logged in
+  const userId = getUser();
 
   if (!userId) {
     redirect("/");
   }
-  
+
   const addTaskResult = await fetch("http://localhost:4000/tasks/", {
     method: "POST",
     body: JSON.stringify({
@@ -24,6 +24,5 @@ export async function POST(request) {
     return new Response(null, responseOptions);
   }
 
-  // TODO: different response?
   return new Response();
 }

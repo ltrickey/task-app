@@ -44,7 +44,6 @@ export default async function TaskList() {
         </div>
       </div>
 
-      // todo have sub leaf client components to update, mark as complete, or add a new task
     );
   }
 }

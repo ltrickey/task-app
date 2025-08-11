@@ -6,7 +6,7 @@ export async function PATCH(request) {
     {
       method: "PATCH",
       body: JSON.stringify({
-        done: !task.done, // right now setting done as false automatically.  TODO could add done tasks
+        done: !task.done,
       }),
     }
   );
@@ -20,6 +20,5 @@ export async function PATCH(request) {
     return new Response(null, responseOptions);
   }
 
-  // TODO: different response?
   return new Response();
 }
