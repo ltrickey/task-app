@@ -17,33 +17,73 @@ export default async function TaskList() {
   } else {
     return (
       <div className="container mx-auto p-6 bg-white rounded-lg shadow-xl">
-        <h3 className="text-xl text-gray-900 leading-tight pb-5">
+        <h3 className="text-xl text-gray-900 leading-tight m-4">
           Current Tasks
         </h3>
-        <ul>
+        <ul className="pb-3">
           {/* map each of these to it's own component, and use generateStaticParams */}
-          {tasks.map((task) => (
-            <li className="" key={task.id}>
-              <p className={task.done ? "line-through" : ""}>
-                {task.title} : {task.description}
-              </p>
-              <div className="grid grid-cols-3 content-between pb-5 pt-1">
-                <EditTask task={task} />
-                <CompleteTask task={task} />
-                <DeleteTask task={task} />
-              </div>
-            </li>
-          ))}
+          {tasks.map(
+            (task) =>
+              !task.done && (
+                <li
+                  className="hover:bg-blue-100 border border-blue-500 rounded-sm lg:max-w-3/4 m-4 p-2"
+                  key={task.id}
+                >
+                  <div className="flex flex-row">
+                    <p
+                      className={
+                        task.done ? "flex-auto line-through" : "flex-auto"
+                      }
+                    >
+                      {task.title} : {task.description}
+                    </p>
+                    <div className="flex-auto">
+                      <div className="flex flex-row flex-wrap justify-end-safe gap-2">
+                        <CompleteTask task={task} className="" />
+                        <EditTask task={task} className="" />
+                        <DeleteTask task={task} className="" />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              )
+          )}
+          {/* Complete tasks */}
+          {tasks.map(
+            (task) =>
+              task.done && (
+                <li
+                  className="border border-blue-500 rounded-sm md:max-w-3/4 lg:max-w-3/4 m-4 p-2"
+                  key={task.id}
+                >
+                  <div className="flex flex-row">
+                    <p
+                      className={
+                        task.done ? "flex-auto line-through" : "flex-auto"
+                      }
+                    >
+                      {task.title} : {task.description}
+                    </p>
+                    <div className="flex-auto">
+                      <div className="flex flex-row flex-wrap justify-end-safe gap-2">
+                        <CompleteTask task={task} className="" />
+                        <EditTask task={task} className="" />
+                        <DeleteTask task={task} className="" />
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              )
+          )}
         </ul>
-        
-        <div className="mx-auto pt-6">
+
+        <div className="border border-blue-500 rounded-sm lg:max-w-1/2 m-4 p-4">
           <AddTaskForm />
         </div>
         <div className="mx-auto pt-6">
           <Logout />
         </div>
       </div>
-
     );
   }
 }

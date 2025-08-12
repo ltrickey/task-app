@@ -27,10 +27,11 @@ export function LoginForm() {
               name="email"
               type="email"
               placeholder="Email"
+              required
             />
           </div>
 
-          <div>
+          <div className="pb-3">
             <label className="mr-1" htmlFor="password">
               Password:
             </label>
@@ -45,10 +46,7 @@ export function LoginForm() {
             />
           </div>
 
-          <button 
-            className="action-button"
-            disabled={pending} type="submit"
-          >
+          <button className="action-button" disabled={pending} type="submit">
             Login
           </button>
         </form>

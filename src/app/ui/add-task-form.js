@@ -9,7 +9,7 @@ export function AddTaskForm() {
   return (
     <div>
       <div className="pt-1">
-        <h3 className="text-xl text-gray-900 leading-tight pb-5">Add a Task</h3>
+        <h3 className="text-xl text-gray-900 leading-tight pb-3">Add a Task</h3>
         {state?.errors && <p>{state.errors}</p>}
         <form action={action}>
           <div>
@@ -26,7 +26,7 @@ export function AddTaskForm() {
             />
           </div>
 
-          <div>
+          <div className="pb-3">
             <label className="mr-1" htmlFor="description">
               Description:
             </label>
