@@ -23,7 +23,7 @@ export async function login(state, formData) {
     return { errors: ["Something went wrong, please try again"] };
   } finally {
     if (loginRes && loginRes.ok) {
-      redirect("/list");
+      redirect("/");
     }
   }
 }
@@ -40,7 +40,6 @@ export async function logout() {
         errors: ["Unable to logout"],
       };
     }
-   
   } catch (err) {
     console.log("caught error: " + err);
   } finally {
